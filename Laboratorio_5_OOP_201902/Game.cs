@@ -102,7 +102,42 @@ namespace Laboratorio_5_OOP_201902
         }
         public void Play()
         {
-            
+            List<string> options = new List<string>() { "Change Card", "Pass" };
+            string message = "Change 3 cards or ready to play";
+            Visualization.ShowProgramMessage($"Player {ActivePlayer.Id} select Deck and Captain");
+            Visualization.ShowDecks(Decks);
+            int input = Visualization.GetUserInput(2, false);
+            ActivePlayer.Deck = Decks[input];
+            Visualization.ShowCaptains(Captains);
+            int input2 = Visualization.GetUserInput(2, false);
+            ActivePlayer.ChooseCaptainCard(Captains[input2]);
+            ActivePlayer.FirstHand();
+            Visualization.ShowHand(ActivePlayer.Hand);
+            Visualization.ShowListOptions(options, message);
+            int input3 = Visualization.GetUserInput(2, false);
+            if (input3 == 0)
+            {
+                Console.WriteLine($"Player {ActivePlayer.Id} change cards:");
+                Console.WriteLine("Hand:");
+                Visualization.ShowHand(ActivePlayer.Hand);
+                Console.WriteLine("Input the number of cards to change (max 3). To stop enter -1");
+                int input4 = Visualization.GetUserInput(4, true);
+                while (input4 > 0) // si el input es 0 o -1 nunca entra al while asi que lo dejo asi tal cual
+                {
+                    Console.WriteLine("Enter the Card ID you want to change");
+                    int cardid = Visualization.GetUserInput(10, true);
+                    ActivePlayer.ChangeCard(cardid);
+                    input4 -= 1;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"Player {ActivePlayer.Id} passed");
+            }
+            Console.WriteLine($"Player {ActivePlayer.Id} turn has finished");
+            Console.WriteLine("Press any key to continue");
+            Console.ReadKey();
+            Visualization.ClearConsole();
         }
         public void AddDecks()
         {

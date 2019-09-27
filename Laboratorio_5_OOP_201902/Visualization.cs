@@ -8,14 +8,14 @@ using Laboratorio_5_OOP_201902.Cards;
 
 namespace Laboratorio_5_OOP_201902
 {
-    static class Visualization
+    public  static class Visualization
     {
         static Visualization()
         {
             Console.ForegroundColor = ConsoleColor.Gray;
         }
         
-        static void ShowHand(Hand hand)
+        public static void ShowHand(Hand hand)
         {
             int counter = 0;
             foreach (Card card in hand.Cards)
@@ -38,7 +38,7 @@ namespace Laboratorio_5_OOP_201902
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        static void ShowDecks(List<Deck> decks)
+        public static void ShowDecks(List<Deck> decks)
         {
             Console.WriteLine("Select one deck:");
             int counter = 0;
@@ -50,7 +50,7 @@ namespace Laboratorio_5_OOP_201902
             }                           //Hago que se muestre un counter por cantidad de mazos
         }
 
-        static void ShowCaptains(List<SpecialCard> captains)
+        public static void ShowCaptains(List<SpecialCard> captains)
         {
             Console.WriteLine("Select one Captain:");
             int counter = 0;
@@ -65,9 +65,8 @@ namespace Laboratorio_5_OOP_201902
             }
         }
 
-        static void GetUserInput(int maxInput, bool stopper = false)
+        public static int GetUserInput(int maxInput, bool stopper = false)
         {
-            
             while (true)
             {
                 string Input = Console.ReadLine();
@@ -81,7 +80,7 @@ namespace Laboratorio_5_OOP_201902
                             ConsoleError($"The option {UserInput} is not valid. Try again");
                             continue;
                         }
-                        break;
+                        return UserInput;
                     }
                     else
                     {
@@ -90,7 +89,7 @@ namespace Laboratorio_5_OOP_201902
                             ConsoleError($"The option {UserInput} is not valid. Try again");
                             continue;
                         }
-                        break;
+                        return UserInput;
                     }
                 }
                 catch (IOException e)
@@ -102,21 +101,21 @@ namespace Laboratorio_5_OOP_201902
             }
         }
 
-        static void ConsoleError(string message)
+        public static void ConsoleError(string message)
         {
             Console.BackgroundColor = ConsoleColor.Red;
             Console.WriteLine(message);
             Console.BackgroundColor = ConsoleColor.Black;
         }
 
-        static void ShowProgramMessage(string message)
+        public static void ShowProgramMessage(string message)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(message);
             Console.ForegroundColor = ConsoleColor.Gray;
         }
 
-        static void ShowListOptions(List<string> options, string message = null)
+        public static void ShowListOptions(List<string> options, string message = null)
         {
             int counter = 0;
             if (message != null)
@@ -129,7 +128,7 @@ namespace Laboratorio_5_OOP_201902
             }
         }
 
-        static void ClearConsole()
+        public static void ClearConsole()
         {
             Console.Clear();
         }
