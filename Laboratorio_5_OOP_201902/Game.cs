@@ -24,7 +24,13 @@ namespace Laboratorio_5_OOP_201902
             captains = new List<SpecialCard>();
             players = new Player[] { new Player(), new Player()};
             Random rand = new Random();
-            int number = rand.Next(0, 2); 
+            int random = rand.Next(0, 2);
+            activePlayer = players[random];
+            boardGame = new Board();
+            players[0].Board = boardGame;
+            players[1].Board = boardGame;
+            AddCaptains();
+            AddDecks();
         }
         //Propiedades
         public Player[] Players
@@ -96,7 +102,7 @@ namespace Laboratorio_5_OOP_201902
         }
         public void Play()
         {
-            throw new NotImplementedException();
+            
         }
         public void AddDecks()
         {
