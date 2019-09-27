@@ -22,6 +22,9 @@ namespace Laboratorio_5_OOP_201902
         {
             decks = new List<Deck>();
             captains = new List<SpecialCard>();
+            players = new Player[] { new Player(), new Player()};
+            Random rand = new Random();
+            int number = rand.Next(0, 2); 
         }
         //Propiedades
         public Player[] Players
