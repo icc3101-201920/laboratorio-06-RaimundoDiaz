@@ -7,14 +7,14 @@ namespace Laboratorio_5_OOP_201902.Enums
     public enum EnumType
     {
         None,
-        melee,
-        range,
-        longRange,
+        melee,          //COMBAT
+        range,          //COMBAT
+        longRange,      //COMBAT
         buff,
-        buffmelee,
-        buffrange,
-        bufflongRange,
-        captain,
-        weather
+        buffmelee,      //SPECIAL
+        buffrange,      //SPECIAL
+        bufflongRange,  //SPECIAL
+        captain,        //SPECIAL
+        weather         //WEATHER
     }
 }

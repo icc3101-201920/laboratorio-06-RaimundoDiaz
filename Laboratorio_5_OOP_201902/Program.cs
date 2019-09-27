@@ -8,6 +8,8 @@ namespace Laboratorio_5_OOP_201902
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Gray;    // PARA DEJAR TODO EN GRIS DESDE EL PRINCIPIO
+            Console.BackgroundColor = ConsoleColor.Black;   // DE IGUAL MANERA DEJO EL FONDO EN NEGRO DEL PRINCIPIO
             Game game = new Game();
             game.AddDecks();
             game.AddCaptains();

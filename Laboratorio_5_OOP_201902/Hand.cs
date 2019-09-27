@@ -12,7 +12,6 @@ namespace Laboratorio_5_OOP_201902
         {
             base.Cards = new List<Card>();
         }
-
         
     }
 }

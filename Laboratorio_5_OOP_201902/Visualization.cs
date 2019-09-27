@@ -3,6 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
 using Laboratorio_5_OOP_201902.Cards;
 
 namespace Laboratorio_5_OOP_201902
@@ -11,12 +12,30 @@ namespace Laboratorio_5_OOP_201902
     {
         static Visualization()
         {
-
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
-
+        
         static void ShowHand(Hand hand)
         {
-
+            int counter = 0;
+            foreach (Card card in hand.Cards)
+            {
+                if (card.Type == Enums.EnumType.melee ||
+                    card.Type == Enums.EnumType.range ||
+                    card.Type == Enums.EnumType.longRange)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    CombatCard tempCard = card as CombatCard;
+                    Console.Write($"|({counter}) {card.Name} ({card.Type}): {tempCard.AttackPoints} |"); 
+                }   // Estoy usando Write en vez de WriteLine porque en el ejemplo lo escribe todo en la misma linea
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.Write($"|({counter}) {card.Name} {card.Effect}|");
+                }
+                counter += 1;
+            }
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
 
         static void ShowDecks(List<Deck> decks)
@@ -48,20 +67,46 @@ namespace Laboratorio_5_OOP_201902
 
         static void GetUserInput(int maxInput, bool stopper = false)
         {
-            string Input = Console.ReadLine();
-            int UserInput = Convert.ToInt32(Input);
-            if (stopper == true)
+            
+            while (true)
             {
-                if (UserInput <= maxInput & UserInput >= -1)
+                string Input = Console.ReadLine();
+                try
                 {
-                    
+                    int UserInput = Convert.ToInt32(Input);
+                    if (stopper)
+                    {
+                        if (UserInput <= maxInput & UserInput >= -1)
+                        {
+                            ConsoleError($"The option {UserInput} is not valid. Try again");
+                            continue;
+                        }
+                        break;
+                    }
+                    else
+                    {
+                        if (UserInput <= maxInput)
+                        {
+                            ConsoleError($"The option {UserInput} is not valid. Try again");
+                            continue;
+                        }
+                        break;
+                    }
+                }
+                catch (IOException e)
+                {
+                    TextWriter errorWriter = Console.Error;
+                    ConsoleError(e.Message);
+                    continue;
                 }
             }
         }
 
         static void ConsoleError(string message)
         {
-
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.BackgroundColor = ConsoleColor.Black;
         }
 
         static void ShowProgramMessage(string message)
@@ -73,12 +118,20 @@ namespace Laboratorio_5_OOP_201902
 
         static void ShowListOptions(List<string> options, string message = null)
         {
-
+            int counter = 0;
+            if (message != null)
+            {
+                Console.WriteLine(message);
+            }
+            foreach (string option in options)
+            {
+                Console.WriteLine($"({counter}) {option}");
+            }
         }
 
         static void ClearConsole()
         {
-
+            Console.Clear();
         }
     }
 }
